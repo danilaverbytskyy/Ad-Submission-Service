@@ -18,7 +18,7 @@ $containerBuilder->addDefinitions([
         return new PDO("mysql:host=localhost; dbname=Ad Submission Service", "root", "");
     },
     Delight\Auth\Auth::class => function () {
-        return new Delight\Auth\Auth(new PDO("mysql:host=localhost; dbname=CRUD2", "root", ""));
+        return new Delight\Auth\Auth(new PDO("mysql:host=localhost; dbname=Ad Submission Service", "root", ""));
     },
 ]);
 $container = $containerBuilder->build();
@@ -26,10 +26,10 @@ $container = $containerBuilder->build();
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/logout', ["App\controllers\HomeController", "logOut"]);
     $r->addRoute('GET', '/login', ["App\controllers\HomeController", "logIn"]);
-    $r->addRoute('GET', '/', ["App\controllers\HomeController", "signUp"]);
+    $r->addRoute('GET', '/signUp', ["App\controllers\HomeController", "signUp"]);
     $r->addRoute('GET', '/addTask', ["App\controllers\HomeController", "addTask"]);
     $r->addRoute('POST', '/storeTask', ["App\controllers\HomeController", "storeTask"]);
-    $r->addRoute('GET', '/main', ["App\controllers\HomeController", "main"]);
+    $r->addRoute('GET', '/', ["App\controllers\HomeController", "main"]);
     $r->addRoute('GET', '/show/{task_id}', ["App\controllers\HomeController", "show"]);
     $r->addRoute('GET', '/edit/{task_id}', ["App\controllers\HomeController", "edit"]);
     $r->addRoute('GET', '/delete/{task_id}', ["App\controllers\HomeController", "delete"]);
