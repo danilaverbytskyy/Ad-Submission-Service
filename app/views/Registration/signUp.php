@@ -1,5 +1,6 @@
 <?php $this->layout('layout') ?>
 
+<?php echo $flash?>
 <form class="mx-5" action="/register" method="POST">
     <h2 class="display-4 pt-5">Регистрация</h2>
     <div class="mb-3">

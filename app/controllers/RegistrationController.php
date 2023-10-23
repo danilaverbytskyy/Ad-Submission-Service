@@ -5,7 +5,9 @@ namespace App\controllers;
 use App\models\Database;
 use App\models\Registration;
 use Delight\Auth\Auth;
+use Delight\Auth\AuthError;
 use League\Plates\Engine;
+use function Tamtamchik\SimpleFlash\flash;
 
 class RegistrationController extends Controller {
 
@@ -20,7 +22,7 @@ class RegistrationController extends Controller {
         try {
             $this->registration->register();
             redirect('/login');
-        } catch (\Exception $exception) {
+        } catch (AuthError $e) {
             redirect('/signup');
         }
     }
@@ -34,7 +36,7 @@ class RegistrationController extends Controller {
         try {
             $this->registration->enter();
             redirect('/');
-        } catch (\Exception $exception) {
+        } catch (AuthError $e) {
             redirect('/login');
         }
     }

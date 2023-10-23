@@ -11,6 +11,7 @@ use Delight\Auth\InvalidPasswordException;
 use Delight\Auth\TooManyRequestsException;
 use Delight\Auth\UserAlreadyExistsException;
 use Exception;
+use function Tamtamchik\SimpleFlash\flash;
 
 class Registration {
     private QueryFactory $queryFactory;
@@ -35,37 +36,41 @@ class Registration {
             $userId = $this->auth->register($_POST['email'], $_POST['password'], $_POST['nickname'], function ($selector, $token) {
                 $this->auth->confirmEmail(urldecode($selector), urldecode($token));
             });
+            flash()->success('Вы успешно зарегистрировались!');
         } catch (InvalidEmailException $e) {
-            throw new Exception();
+            flash()->warning('Некорректный email');
+            throw new AuthError();
         } catch (InvalidPasswordException $e) {
-            throw new Exception();
+            flash()->warning('Некорректный пароль');
+            throw new AuthError();
         } catch (UserAlreadyExistsException $e) {
-            throw new Exception();
+            flash()->warning('Вы уже зарегистрированы');
+            throw new AuthError();
         } catch (TooManyRequestsException $e) {
-            throw new Exception();
+            flash()->error('Слишком много запросов');
+            throw new AuthError();
         }
     }
 
     public function enter() {
         try {
             $this->auth->login($_POST['email'], $_POST['password']);
-            $_SESSION['message'] = 'Добро пожаловать, ' . $this->auth->getUsername() . '!';
         }
         catch (InvalidEmailException $e) {
-            $_SESSION['message'] = 'Некорректный email';
-            throw new Exception();
+            flash()->warning('Некорректный email');
+            throw new AuthError();
         }
         catch (InvalidPasswordException $e) {
-            $_SESSION['message'] = "Некорректный пароль";
-            throw new Exception();
+            flash()->warning('Некорректный пароль');
+            throw new AuthError();
         }
         catch (EmailNotVerifiedException $e) {
-            $_SESSION['message'] = "Email не подтвержден";
-            throw new Exception();
+            flash()->warning('Почта не была подтверждена');
+            throw new AuthError();
         }
         catch (TooManyRequestsException $e) {
-            $_SESSION['message'] = "Слишком много запросов";
-            throw new Exception();
+            flash()->error('Слишком много запросов');
+            throw new AuthError();
         }
     }
 }

@@ -13,6 +13,8 @@
 </head>
 <body>
 
+
+<div class="d-flex flex-column min-vh-100">
 <nav class="navbar navbar-expand-lg bg-body-tertiary bg-gradient">
     <div class="container-fluid mx-5">
         <a class="navbar-brand" href="/">Awito</a>
@@ -40,31 +42,38 @@
                     </ul>
                 </li>
             </ul>
-            <?php if(isset($isLoggedIn) === false):?>
-            <form class="d-flex">
-                <a href="/login" type="button" class="btn bg-info opacity-75 mt-2 mx-1">
-                    <i class="bi bi-box-arrow-in-right"></i> Войти
-                </a>
-                <a href="/signup" type="button" class="btn btn-primary opacity-75 mt-2 mx-1">
-                    <i class="bi bi-pencil"></i> Зарегистрироваться
-                </a>
-            </form>
+            <?php if($isLoggedIn === false):?>
+                <form class="d-flex">
+                    <a href="/login" type="button" class="btn bg-info opacity-75 mt-2 mx-1">
+                        <i class="fa-solid fa-door-closed fa-beat-fade"></i> Войти
+                    </a>
+                    <a href="/signup" type="button" class="btn btn-primary opacity-75 mt-2 mx-1">
+                        <i class="bi bi-pencil"></i> Зарегистрироваться
+                    </a>
+                </form>
             <?php else:?>
-            <form class="d-flex">
-                <button type="button" class="btn bg-info opacity-75 mt-2 mx-1">
-                    <i class="bi bi-box-arrow-in-right"></i> Войти
-                </button>
-                <button type="button" class="btn btn-warning opacity-75 mt-2 mx-1">
-                    <i class="bi bi-pencil"></i> Зарегистрироваться
-                </button>
-            </form>
+                <form class="d-flex">
+                    <p class="mt-2 mx-2">Добро пожаловать, <?php echo htmlspecialchars($nickname) ?>!</p>
+                    <a href="/logout" class="btn btn-warning opacity-75 mt-2 mx-1"><i class="fa-solid fa-door-closed fa-bounce"></i> Выйти</a>
+                </form>
             <?php endif;?>
         </div>
     </div>
 </nav>
 
 
-<?=$this->section('content')?>
+    <main class="flex-grow-1">
+        <?=$this->section('content')?>
+    </main>
+
+    <footer class="footer bg-light py-3 mt-auto">
+        <div class="container text-center">
+            <hr>
+            <span class="text-muted">©Awito, Inc. 2023</span>
+        </div>
+    </footer>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/ea30508f49.js" crossorigin="anonymous"></script>

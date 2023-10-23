@@ -6,6 +6,7 @@ use App\models\Database;
 use App\models\Roles;
 use Delight\Auth\Auth;
 use League\Plates\Engine;
+use Tamtamchik\SimpleFlash\Flash;
 
 class Controller {
 
