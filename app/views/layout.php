@@ -40,14 +40,25 @@
                     </ul>
                 </li>
             </ul>
+            <?php if(isset($isLoggedIn) === false):?>
+            <form class="d-flex">
+                <a href="/login" type="button" class="btn bg-info opacity-75 mt-2 mx-1">
+                    <i class="bi bi-box-arrow-in-right"></i> Войти
+                </a>
+                <a href="/signup" type="button" class="btn btn-primary opacity-75 mt-2 mx-1">
+                    <i class="bi bi-pencil"></i> Зарегистрироваться
+                </a>
+            </form>
+            <?php else:?>
             <form class="d-flex">
                 <button type="button" class="btn bg-info opacity-75 mt-2 mx-1">
                     <i class="bi bi-box-arrow-in-right"></i> Войти
                 </button>
-                <button type="button" class="btn btn-primary opacity-75 mt-2 mx-1">
+                <button type="button" class="btn btn-warning opacity-75 mt-2 mx-1">
                     <i class="bi bi-pencil"></i> Зарегистрироваться
                 </button>
             </form>
+            <?php endif;?>
         </div>
     </div>
 </nav>
