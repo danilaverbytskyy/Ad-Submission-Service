@@ -15,8 +15,9 @@ class HomeController extends Controller {
         $this->registration = $registration;
     }
 
-    public function main(): void {
-        echo $this->view->render('home', []);
+    public function home(): void {
+        $advertisments = $this->database->getAll('advertisments');
+        echo $this->view->render('home', ['advertisments' => $advertisments]);
     }
 
 }

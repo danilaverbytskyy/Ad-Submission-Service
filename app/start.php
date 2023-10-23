@@ -29,7 +29,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('GET', '/signUp', ["App\controllers\HomeController", "signUp"]);
     $r->addRoute('GET', '/addTask', ["App\controllers\HomeController", "addTask"]);
     $r->addRoute('POST', '/storeTask', ["App\controllers\HomeController", "storeTask"]);
-    $r->addRoute('GET', '/', ["App\controllers\HomeController", "main"]);
+    $r->addRoute('GET', '/', ["App\controllers\HomeController", "home"]);
     $r->addRoute('GET', '/show/{task_id}', ["App\controllers\HomeController", "show"]);
     $r->addRoute('GET', '/edit/{task_id}', ["App\controllers\HomeController", "edit"]);
     $r->addRoute('GET', '/delete/{task_id}', ["App\controllers\HomeController", "delete"]);

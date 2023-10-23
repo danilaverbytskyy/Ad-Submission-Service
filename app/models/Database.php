@@ -18,7 +18,7 @@ class Database {
         $this->auth = $auth;
     }
 
-    public function all(string $table, int $id) : array {
+    public function getAllById(string $table, int $id) : array {
         $select = $this->queryFactory->newSelect();
         $select->cols(["*"])
             ->from($table)
@@ -29,12 +29,21 @@ class Database {
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAll(string $table) : array {
+        $select = $this->queryFactory->newSelect();
+        $select->cols(["*"])
+            ->from($table);
+        $sth = $this->pdo->prepare($select->getStatement());
+        $sth->execute($select->getBindValues());
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getOne(string $table, int $id) : array{
         $select = $this->queryFactory->newSelect();
         $select->cols(["*"])
             ->from($table)
-            ->where('task_id = :task_id')
-            ->bindValue('task_id', $id);
+            ->where('id = :id')
+            ->bindValue('id', $id);
         $sth = $this->pdo->prepare($select->getStatement());
         $sth->execute($select->getBindValues());
         return $sth->fetch(PDO::FETCH_ASSOC);
@@ -44,8 +53,8 @@ class Database {
         $update = $this->queryFactory->newUpdate();
         $update->table($table)
             ->cols(array_keys($newData))
-            ->where('task_id = :task_id')
-            ->bindValue('task_id', $id);
+            ->where('id = :id')
+            ->bindValue('id', $id);
         foreach ($newData as $key => $val) {
             $update->bindValues([$key => $val]);
         }
@@ -57,8 +66,8 @@ class Database {
         $delete = $this->queryFactory->newDelete();
         $delete
             ->from($table)
-            ->where('task_id = :task_id')
-            ->bindValue('task_id', $id);
+            ->where('id = :id')
+            ->bindValue('id', $id);
         $sth = $this->pdo->prepare($delete->getStatement());
         $sth->execute($delete->getBindValues());
     }
