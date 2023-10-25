@@ -25,16 +25,18 @@ $container = $containerBuilder->build();
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/logout', ["App\controllers\RegistrationController", "logOut"]);
+    $r->addRoute('POST', '/enter', ["App\controllers\RegistrationController", "enter"]);
+    $r->addRoute('POST', '/register', ["App\controllers\RegistrationController", "register"]);
+
+    $r->addRoute('GET', '/', ["App\controllers\HomeController", "home"]);
     $r->addRoute('GET', '/login', ["App\controllers\HomeController", "logIn"]);
     $r->addRoute('GET', '/signup', ["App\controllers\HomeController", "signUp"]);
-    $r->addRoute('GET', '/addTask', ["App\controllers\HomeController", "addTask"]);
+    $r->addRoute('GET', '/create', ["App\controllers\HomeController", "createAdvertisement"]);
+
     $r->addRoute('POST', '/storeTask', ["App\controllers\HomeController", "storeTask"]);
-    $r->addRoute('GET', '/', ["App\controllers\HomeController", "home"]);
     $r->addRoute('GET', '/show/{task_id}', ["App\controllers\HomeController", "show"]);
     $r->addRoute('GET', '/edit/{task_id}', ["App\controllers\HomeController", "edit"]);
     $r->addRoute('GET', '/delete/{task_id}', ["App\controllers\HomeController", "delete"]);
-    $r->addRoute('POST', '/enter', ["App\controllers\RegistrationController", "enter"]);
-    $r->addRoute('POST', '/register', ["App\controllers\RegistrationController", "register"]);
     $r->addRoute('POST', '/update/{task_id}', ["App\controllers\HomeController", "update"]);
 });
 

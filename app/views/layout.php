@@ -52,9 +52,9 @@
                     </a>
                 </form>
             <?php else:?>
-                <form class="d-flex">
-                    <p class="mt-2 mx-2">Добро пожаловать, <?php echo htmlspecialchars($nickname) ?>!</p>
-                    <a href="/logout" class="btn btn-warning opacity-75 mt-2 mx-1"><i class="fa-solid fa-door-closed fa-bounce"></i> Выйти</a>
+                <form class="d-flex mt-3">
+                    <p class="mx-2 mt-2">Добро пожаловать, <?php echo htmlspecialchars($nickname) ?>!</p>
+                    <a href="/logout" class="btn btn-warning opacity-75 mx-1"><i class="fa-solid fa-door-closed fa-bounce"></i> Выйти</a>
                 </form>
             <?php endif;?>
         </div>
