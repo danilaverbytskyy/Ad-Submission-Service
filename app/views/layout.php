@@ -29,18 +29,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/about"><i class="bi bi-info-circle"></i> О нас</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-grid"></i> Категории
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-gem"></i> Украшения</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-building"></i> Квартиры</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-piggy-bank"></i> Животные</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-vinyl"></i> Души Дьявола</a></li>
-                    </ul>
-                </li>
             </ul>
             <?php if($isLoggedIn === false):?>
                 <form class="d-flex">
@@ -52,8 +40,8 @@
                     </a>
                 </form>
             <?php else:?>
-                <form class="d-flex mt-3">
-                    <p class="mx-2 mt-2">Добро пожаловать, <?php echo htmlspecialchars($nickname) ?>!</p>
+                <form class="d-flex mb-4">
+                    <p class="mx-2">Добро пожаловать, <?php echo htmlspecialchars($nickname) ?>!</p>
                     <a href="/logout" class="btn btn-warning opacity-75 mx-1"><i class="fa-solid fa-door-closed fa-bounce"></i> Выйти</a>
                 </form>
             <?php endif;?>

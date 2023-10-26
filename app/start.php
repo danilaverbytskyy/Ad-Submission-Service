@@ -20,6 +20,9 @@ $containerBuilder->addDefinitions([
     Delight\Auth\Auth::class => function () {
         return new Delight\Auth\Auth(new PDO("mysql:host=localhost; dbname=Ad Submission Service", "root", ""));
     },
+    Intervention\Image\Image::class => function() {
+        return new Intervention\Image\Image;
+    }
 ]);
 $container = $containerBuilder->build();
 
@@ -33,11 +36,11 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('GET', '/signup', ["App\controllers\HomeController", "signUp"]);
     $r->addRoute('GET', '/create', ["App\controllers\HomeController", "createAdvertisement"]);
 
-    $r->addRoute('POST', '/storeTask', ["App\controllers\HomeController", "storeTask"]);
-    $r->addRoute('GET', '/show/{task_id}', ["App\controllers\HomeController", "show"]);
-    $r->addRoute('GET', '/edit/{task_id}', ["App\controllers\HomeController", "edit"]);
-    $r->addRoute('GET', '/delete/{task_id}', ["App\controllers\HomeController", "delete"]);
-    $r->addRoute('POST', '/update/{task_id}', ["App\controllers\HomeController", "update"]);
+    $r->addRoute('POST', '/storeAdvertisement', ["App\controllers\AdvertisementController", "storeAdvertisement"]);
+    $r->addRoute('GET', '/show/{task_id}', ["App\controllers\AdvertisementController", "show"]);
+    $r->addRoute('GET', '/edit/{task_id}', ["App\controllers\AdvertisementController", "edit"]);
+    $r->addRoute('GET', '/delete/{task_id}', ["App\controllers\AdvertisementController", "delete"]);
+    $r->addRoute('POST', '/update/{task_id}', ["App\controllers\AdvertisementController", "update"]);
 });
 
 // Fetch method and URI from somewhere

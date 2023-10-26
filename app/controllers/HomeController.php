@@ -22,15 +22,15 @@ class HomeController extends Controller {
     }
 
     public function home(): void {
-        $advertisments = $this->database->getAll('advertisments');
+        $advertisements = $this->database->getAll('advertisements');
         $authors = [];
-        foreach ($advertisments as $advertisment) {
-            $userDate=$this->database->getOne('users', $advertisment['user_id']);
-            $authors[$advertisment['id']] = $userDate['username'];
+        foreach ($advertisements as $advertisement) {
+            $userData=$this->database->getOne('users', $advertisement['user_id']);
+            $authors[$advertisement['id']] = $userData['username'];
         }
         echo $this->view->render('home', [
             'username' => $this->auth->getUsername(),
-            'advertisments' => $advertisments,
+            'advertisements' => $advertisements,
             'authors' => $authors,
             ]);
     }
@@ -48,7 +48,7 @@ class HomeController extends Controller {
     }
 
     public function createAdvertisement() : void {
-        echo $this->view->render('/Advertisment/create', [
+        echo $this->view->render('/Advertisement/create', [
             'flash' => flash(),
         ]);
     }

@@ -8,12 +8,12 @@
 </section>
 
 
-<section id="advertisments">
+<section id="advertisements">
     <div class="container">
         <div class="row">
-            <?php if (isset($username) && $username !== null): ?>
+            <?php if (isset($username)): ?>
                 <div class="alert alert-dark" role="alert">
-                    <?php echo $username ?>, прямо сейчас вы можете
+                    <?php echo htmlspecialchars($username) ?>, прямо сейчас вы можете
                     <a href="/create" type="button" class="btn bg-success opacity-75 mt-2 mx-1">
                         <i class="fa-sharp fa-light fa-wand-magic-sparkles fa-bounce"></i> Создать Объявление
                     </a>
@@ -24,18 +24,19 @@
                             href="/login">Авторизированы</a>
                 </div>
             <?php endif; ?>
-            <?php if (isset($advertisments)): ?>
-                <?php foreach ($advertisments as $advertisment): ?>
+            <?php if (isset($advertisements) && isset($authors)): ?>
+                <?php foreach ($advertisements as $advertisement): ?>
                     <div class="col-sm-3 mb-3 mb-sm-3">
                         <div class="card" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
+                            <img src=<?php echo "/img/Advertisement/{$advertisement['image']}"?>  />
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo $advertisment['title'] ?></h5>
-                                <p class="card-text"><?php echo $advertisment['description'] ?></p>
-                                <p class="card-text"><?php echo $advertisment['date'] ?></p>
+                                <h5 class="card-title"><?php echo htmlspecialchars($advertisement['title']) ?></h5>
+                                <p class="card-text"><?php echo htmlspecialchars($advertisement['description']) ?></p>
+                                <p class="card-text"><?php echo htmlspecialchars($advertisement['date']) ?></p>
+                                <p class="card-text"><?php echo htmlspecialchars($advertisement['price'] . ' руб.') ?></p>
                                 <p class="card-text">
                                     <i class="fa-solid fa-book-open-reader"
-                                       style="color: #169914;"></i> <?php echo $authors[$advertisment["id"]] ?>
+                                       style="color: #169914;"></i> <?php echo htmlspecialchars($authors[$advertisement["id"]]) ?>
                                 </p>
                                 <a href="#" class="btn btn-primary">Смотреть</a>
                             </div>
@@ -44,6 +45,5 @@
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-    </div>
     </div>
 </section>
