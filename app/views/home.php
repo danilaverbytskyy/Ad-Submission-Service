@@ -13,7 +13,7 @@
         <div class="row">
             <?php if (isset($username)): ?>
                 <div class="alert alert-dark" role="alert">
-                    <?php echo htmlspecialchars($username) ?>, прямо сейчас вы можете
+                    <?= htmlspecialchars($username) ?>, прямо сейчас вы можете
                     <a href="/create" type="button" class="btn bg-success opacity-75 mt-2 mx-1">
                         <i class="fa-sharp fa-light fa-wand-magic-sparkles fa-bounce"></i> Создать Объявление
                     </a>
@@ -28,15 +28,15 @@
                 <?php foreach ($advertisements as $advertisement): ?>
                     <div class="col-sm-3 mb-3 mb-sm-3">
                         <div class="card" style="width: 18rem;">
-                            <img src=<?php echo "/img/Advertisement/{$advertisement['image']}"?>  />
+                            <img src=<?= "/img/Advertisement/{$advertisement['image']}"?>  />
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($advertisement['title']) ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($advertisement['description']) ?></p>
-                                <p class="card-text"><?php echo htmlspecialchars($advertisement['date']) ?></p>
-                                <p class="card-text"><?php echo htmlspecialchars($advertisement['price'] . ' руб.') ?></p>
+                                <h5 class="card-title"><?= htmlspecialchars($advertisement['title']) ?></h5>
+                                <p class="card-text"><?= htmlspecialchars($advertisement['description']) ?></p>
+                                <p class="card-text"><?= htmlspecialchars($advertisement['date']) ?></p>
+                                <p class="card-text"><?= htmlspecialchars($advertisement['price'] . ' руб.') ?></p>
                                 <p class="card-text">
                                     <i class="fa-solid fa-book-open-reader"
-                                       style="color: #169914;"></i> <?php echo htmlspecialchars($authors[$advertisement["id"]]) ?>
+                                       style="color: #169914;"></i> <?= htmlspecialchars($authors[$advertisement["id"]]) ?>
                                 </p>
                                 <a href="#" class="btn btn-primary">Смотреть</a>
                             </div>

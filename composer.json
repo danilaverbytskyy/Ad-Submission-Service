@@ -16,8 +16,8 @@
     "aura/sqlquery": "^3.0",
     "respect/validation": "^2.2",
     "intervention/image": "^2.7",
-    "jasongrimes/paginator": "^1.0",
     "tamtamchik/simple-flash": "^3.0",
-    "symfony/mailer": "^6.3"
+    "symfony/mailer": "^6.3",
+    "nette/utils": "^4.0"
   }
 }

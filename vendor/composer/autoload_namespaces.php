@@ -6,5 +6,4 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'JasonGrimes' => array($vendorDir . '/jasongrimes/paginator/src'),
 );

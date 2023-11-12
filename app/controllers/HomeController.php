@@ -6,7 +6,7 @@ use App\models\Database;
 use App\models\Registration;
 use Delight\Auth\Auth;
 use League\Plates\Engine;
-use function DI\add;
+use Nette\Utils\Paginator;
 use function Tamtamchik\SimpleFlash\flash;
 
 class HomeController extends Controller {
